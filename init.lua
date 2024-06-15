@@ -11,6 +11,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Example using a list of specs with the default options
+vim.g.mapleader = "\\"      -- Make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.maplocalleader = "\\" -- Same for `maplocalleader`
 
 require("lazy").setup({
     {
@@ -22,7 +25,11 @@ require("lazy").setup({
 
     -- { "ellisonleao/gruvbox.nvim" },
     -- { 'folke/tokyonight.nvim' },
-    { 'rose-pine/neovim', name = 'rose-pine' },
+    {
+        'rose-pine/neovim',
+        lazy = false,
+        name = 'rose-pine'
+    },
 
     {
         "folke/trouble.nvim",
@@ -79,7 +86,7 @@ require("lazy").setup({
     "eandrju/cellular-automaton.nvim",
     "laytan/cloak.nvim",
 
-    { "fatih/vim-go",     build = ':GoUpdateBinaries' },
+    { "fatih/vim-go", build = ':GoUpdateBinaries' },
     {
         "akinsho/bufferline.nvim",
         version = '*',
